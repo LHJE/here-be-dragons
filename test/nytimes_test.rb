@@ -24,11 +24,8 @@ class NytimesTest < Minitest::Test
   end
 
   def test_it_can_get_all_stories_with_subsection_of_politics
-    result = []
-    @hash[:results].each do |section|
-      if section[:subsection] == "Politics"
-        result << section
-      end
+    result = @hash[:results].find_all do |section|
+      section[:subsection] == "Politics"
     end
 
     assert result.is_a? (Array)
